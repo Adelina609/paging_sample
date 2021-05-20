@@ -1,3 +1,4 @@
+apply plugin: 'org.sonarqube'
 /*
  * Copyright (C) 2017 The Android Open Source Project
  *
@@ -22,6 +23,7 @@ buildscript {
     addRepos(repositories)
 
     dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.2.0"
         classpath deps.android_gradle_plugin
         classpath deps.kotlin.plugin
         classpath deps.benchmark_gradle
@@ -37,4 +39,11 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+sonarqube {
+  properties {
+    property 'sonar.host.url', 'https://sonarcloud.io'
+    property 'sonar.organization', 'adelina609'
+    property 'sonar.projectKey', 'Adelina609_paging_sample'
+  }
 }
